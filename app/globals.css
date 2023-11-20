@@ -2,3 +2,15 @@
 @tailwind components;
 @tailwind utilities;
 
+#popular-mov-text {
+    text-align: center;
+    font-weight: bold;
+    margin-top: 1rem;
+    font-size: 20px;
+}
+
+#popular-img {
+    height: 50vh;
+    width: auto;
+    border-radius: 2rem;
+}
