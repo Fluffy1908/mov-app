@@ -7,7 +7,7 @@ export default function PopularFetch() {
   const [allMovies, setAllMovies] = useState([]); // Stores all movies
   const [displayedMovies, setDisplayedMovies] = useState([]); // Stores movies that are currently displayed
   const [popularData, setPopularData] = useState(null);
-  const apiKey = "19645e77ac94e25c49e5cab3b05494eb";
+  const apiKey = "";
   const itemsPerPage = 10;
  
   useEffect(() => {
