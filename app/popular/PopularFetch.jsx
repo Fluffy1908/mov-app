@@ -3,10 +3,11 @@ import React, { useState, useEffect } from 'react'
  
 export default function PopularFetch() {
   const [popularData, setPopularData] = useState(null)
+  const apiKey = ""
  
   useEffect(() => {
     const fetchData = async () => {
-      const response = await fetch('https://api.themoviedb.org/3/movie/popular?api_key=7cd84399b71e108a5f5269c09183bd44')
+      const response = await fetch(`https://api.themoviedb.org/3/movie/popular?api_key=${apiKey}`)
       if (!response.ok) {
         throw new Error(`HTTP error! status: ${response.status}`)
       }
@@ -19,7 +20,22 @@ export default function PopularFetch() {
     })
   }, [])
  
-  return <p>{popularData ? `Your data: ${popularData}` : 'Loading...'}</p>
+  return (
+    <div>
+      {popularData ? (
+        <ul>
+          {popularData.results.map(movie => (
+            <li key={movie.id}>{movie.original_title}</li>
+          ))}
+        </ul>
+      ): (
+        'Loading ...'
+      )}
+    </div>
+  );
+
+
+
 }
 
 
@@ -31,7 +47,7 @@ export default function PopularFetch() {
 
 
 // async function getPopular() {
-//     const res = await fetch('https://api.themoviedb.org/3/movie/popular?api_key=7cd84399b71e108a5f5269c09183bd44')
+//     const res = await fetch(`https://api.themoviedb.org/3/movie/popular?api_key=${apiKey}`)
 
 //     res.json()
 // }
