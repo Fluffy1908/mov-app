@@ -14,3 +14,25 @@
     width: auto;
     border-radius: 2rem;
 }
+
+#popular-button {
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+}
+
+#popular-mov-comp {
+    margin-top: 5rem;
+    margin-left: 5rem;
+    margin-right: 5rem;
+}
+
+@media (max-width: 1250px) {
+    #popular-mov-comp {
+        margin: 0;
+    }
+
+    #popular-img {
+        height: 25vh;
+    }
+  }

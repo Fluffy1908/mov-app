@@ -8,7 +8,7 @@ export default function Navbar() {
           <a href="/" className="hover:text-gray-300">MovieR</a>
         </div>
         <div className="space-x-4">
-          <a href="/" className="hover:text-gray-300">Popular Now</a>
+          <a href="/popular" className="hover:text-gray-300">Popular Now</a>
           <a href="/" className="hover:text-gray-300">Rating</a>
           <a href="/" className="hover:text-gray-300">Contact</a>
         </div>
