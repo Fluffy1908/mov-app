@@ -1,9 +1,12 @@
 'use client'
 import React, { useState, useEffect } from 'react'
+import LoadingPage from '../components/LoadingAnimation';
+
 
 export default function TopFetch() {
     const [allMovies, setAllMovies] = useState([]);
     const apiKey = "";
+    const [isLoaded, setIsLoaded] = useState(false)
 
     useEffect(() => {
         const fetchData = async () => {
@@ -13,6 +16,7 @@ export default function TopFetch() {
           }
           const result = await response.json()
           setAllMovies(result.results);
+          setIsLoaded(true)
         }
      
         fetchData().catch((e) => {
@@ -22,13 +26,12 @@ export default function TopFetch() {
       
       return (
         <div>
+          {!isLoaded && <LoadingPage />}
           {allMovies && allMovies.map(movie => (
             <>
             <h1 key={movie.id}>{movie.original_title}</h1>
-
-
             </>
           ))}
         </div>
-      );
+      )
 }
