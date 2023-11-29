@@ -3,36 +3,36 @@
 @tailwind utilities;
 
 #popular-mov-text {
-    text-align: center;
-    font-weight: bold;
-    margin-top: 1rem;
-    font-size: 20px;
+  text-align: center;
+  font-weight: bold;
+  margin-top: 1rem;
+  font-size: 20px;
 }
 
 #popular-img {
-    height: 50vh;
-    width: auto;
-    border-radius: 2rem;
+  height: 50vh;
+  width: auto;
+  border-radius: 2rem;
 }
 
 #popular-button {
-    text-align: center;
-    justify-content: center;
-    align-items: center;
+  text-align: center;
+  justify-content: center;
+  align-items: center;
 }
 
 #popular-mov-comp {
-    margin-top: 5rem;
-    margin-left: 5rem;
-    margin-right: 5rem;
+  margin-top: 5rem;
+  margin-left: 5rem;
+  margin-right: 5rem;
 }
 
 @media (max-width: 1250px) {
-    #popular-mov-comp {
-        margin: 0;
-    }
-
-    #popular-img {
-        height: 25vh;
-    }
+  #popular-mov-comp {
+    margin: 0;
   }
+
+  #popular-img {
+    height: 25vh;
+  }
+}
