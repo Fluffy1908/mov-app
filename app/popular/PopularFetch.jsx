@@ -6,7 +6,9 @@ export default function PopularFetch() {
   const [allMovies, setAllMovies] = useState([]); // Stores all movies
   const [displayedMovies, setDisplayedMovies] = useState([]); // Stores movies that are currently displayed
   const [popularData, setPopularData] = useState(null);
-  const apiKey = "19645e77ac94e25c49e5cab3b05494eb";
+  const [movieDetails, setMoviesDetails] = useState();
+  const [movieMore, setMovieMore] = useState(false);
+  const apiKey = "";
   const itemsPerPage = 10;
 
   useEffect(() => {
@@ -22,6 +24,25 @@ export default function PopularFetch() {
       setPopularData(result);
       setAllMovies(result.results);
       setDisplayedMovies(result.results.slice(0, itemsPerPage));
+      setMoviesDetails(results.results.id);
+    };
+
+    fetchData().catch((e) => {
+      console.error("Error occurred on fetch", e);
+    });
+  }, []);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const response = await fetch(
+        `https://api.themoviedb.org/3/movie/${movieDetails}?api_key=${apiKey}`
+      );
+
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+      const result = await response.json();
+      setMovieMore(result);
     };
 
     fetchData().catch((e) => {
@@ -36,6 +57,14 @@ export default function PopularFetch() {
     );
     setDisplayedMovies(displayedMovies.concat(nextItems));
   };
+
+  function setMovieTrue() {
+    if (movieMore === false) {
+      setMovieMore(true);
+    } else if (movieMore === true) {
+      setMovieMore(false);
+    }
+  }
 
   return (
     <div>
@@ -78,6 +107,21 @@ export default function PopularFetch() {
 
                 <p key={movie.id}>Total voters: {movie.vote_count}</p>
                 {movie.adult ? <p>Age: 18+</p> : ""}
+
+                <button onClick={setMovieTrue} key={movie.id}>
+                  More details
+                </button>
+
+                {movieMore ? (
+                  <>
+                    <p>Some text here</p>
+                    <p>Some text here</p>
+                    <p>Some text here</p>
+                    <p>Some text here</p>
+                  </>
+                ) : (
+                  ""
+                )}
               </div>
             </div>
           ))}

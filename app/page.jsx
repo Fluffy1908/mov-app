@@ -2,7 +2,7 @@ import React from "react";
 import LoadingPage from "./components/LoadingAnimation";
 
 export default async function Home() {
-  const apiKey = "19645e77ac94e25c49e5cab3b05494eb";
+  const apiKey = "";
 
   try {
     const response = await fetch(
