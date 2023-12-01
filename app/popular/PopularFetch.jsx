@@ -6,10 +6,11 @@ export default function PopularFetch() {
   const [allMovies, setAllMovies] = useState([]); // Stores all movies
   const [displayedMovies, setDisplayedMovies] = useState([]); // Stores movies that are currently displayed
   const [popularData, setPopularData] = useState(null);
-  const [movieDetails, setMoviesDetails] = useState();
   const [movieMore, setMovieMore] = useState(false);
   const apiKey = "";
   const itemsPerPage = 10;
+  // const [movieId, setMovieId] = useState();
+  // const [movieByID, setMovieByID] = useState([]);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -24,31 +25,35 @@ export default function PopularFetch() {
       setPopularData(result);
       setAllMovies(result.results);
       setDisplayedMovies(result.results.slice(0, itemsPerPage));
-      setMoviesDetails(results.results.id);
-    };
-
-    fetchData().catch((e) => {
-      console.error("Error occurred on fetch", e);
-    });
-  }, []);
-
-  useEffect(() => {
-    const fetchData = async () => {
-      const response = await fetch(
-        `https://api.themoviedb.org/3/movie/${movieDetails}?api_key=${apiKey}`
+      setMovieId(
+        result.results.map((id) => {
+          return id;
+        })
       );
-
-      if (!response.ok) {
-        throw new Error(`HTTP error! status: ${response.status}`);
-      }
-      const result = await response.json();
-      setMovieMore(result);
     };
 
     fetchData().catch((e) => {
       console.error("Error occurred on fetch", e);
     });
   }, []);
+
+  // useEffect(() => {
+  //   const fetchData = async () => {
+  //     const response = await fetch(
+  //       `https://api.themoviedb.org/3/movie/${movieId}?api_key=${apiKey}`
+  //     );
+
+  //     if (!response.ok) {
+  //       throw new Error(`HTTP error! status: ${response.status}`);
+  //     }
+  //     const result = await response.json();
+  //     setMovieByID(result.results); // result.results
+  //   };
+
+  //   fetchData().catch((e) => {
+  //     console.error("Error occurred on fetch", e);
+  //   });
+  // }, []);
 
   const handleLoadMore = () => {
     const nextItems = allMovies.slice(
@@ -108,12 +113,19 @@ export default function PopularFetch() {
                 <p key={movie.id}>Total voters: {movie.vote_count}</p>
                 {movie.adult ? <p>Age: 18+</p> : ""}
 
-                <button onClick={setMovieTrue} key={movie.id}>
+                {/* <button onClick={setMovieTrue} key={movie.id}>
                   More details
-                </button>
+                </button> */}
 
-                {movieMore ? (
+                {/* {movieMore ? (
                   <>
+                    {movieByID.map((movie) => (
+                      <>
+                        <div key={movie.id}>
+                          <h1>{movie.results.original_title}</h1>
+                        </div>
+                      </>
+                    ))}
                     <p>Some text here</p>
                     <p>Some text here</p>
                     <p>Some text here</p>
@@ -121,7 +133,7 @@ export default function PopularFetch() {
                   </>
                 ) : (
                   ""
-                )}
+                )} */}
               </div>
             </div>
           ))}
