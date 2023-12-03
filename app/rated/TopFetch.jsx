@@ -4,7 +4,7 @@ import LoadingPage from "../components/LoadingAnimation";
 
 export default function TopFetch() {
   const [allMovies, setAllMovies] = useState();
-  const apiKey = "123";
+  const apiKey = process.env.MOVDB_API_KEY;
 
   useEffect(() => {
     const fetchData = async () => {

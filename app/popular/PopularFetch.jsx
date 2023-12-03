@@ -3,11 +3,11 @@ import React, { useState, useEffect } from "react";
 import LoadingPage from "../components/LoadingAnimation";
 
 export default function PopularFetch() {
-  const [allMovies, setAllMovies] = useState([]); // Stores all movies
-  const [displayedMovies, setDisplayedMovies] = useState([]); // Stores movies that are currently displayed
+  const [allMovies, setAllMovies] = useState([]);
+  const [displayedMovies, setDisplayedMovies] = useState([]);
   const [popularData, setPopularData] = useState(null);
   const [movieMore, setMovieMore] = useState(false);
-  const apiKey = "123";
+  const apiKey = process.env.MOVDB_API_KEY;
   const itemsPerPage = 10;
 
   useEffect(() => {
@@ -23,11 +23,6 @@ export default function PopularFetch() {
       setPopularData(result);
       setAllMovies(result.results);
       setDisplayedMovies(result.results.slice(0, itemsPerPage));
-      setMovieId(
-        result.results.map((id) => {
-          return id;
-        })
-      );
     };
 
     fetchData().catch((e) => {
@@ -57,6 +52,7 @@ export default function PopularFetch() {
         <>
           {displayedMovies.map((movie) => (
             <div
+              key={movie.id} // Corrected: key prop added here
               className="flex shadow-[rgba(0,_0,_0,_0.24)_0px_3px_8px] p-5"
               id="popular-mov-comp"
             >
@@ -66,23 +62,23 @@ export default function PopularFetch() {
               />
 
               <div className="flex-col ml-5">
-                <h2 key={movie.id} className="font-bold text-3xl mb-1">
+                <h2 className="font-bold text-3xl mb-1">
                   {movie.original_title}
                 </h2>
 
-                <p key={movie.id} className="text-lg">
+                <p className="text-lg">
                   {movie.overview}
                 </p>
 
-                <p key={movie.id} className="mt-5 text-green-600 text-lg">
+                <p className="mt-5 text-green-600 text-lg">
                   Rating: {movie.vote_average}
                 </p>
 
-                <p key={movie.id} className="text-lg">
+                <p className="text-lg">
                   Release date: {movie.release_date}
                 </p>
 
-                <p key={movie.id}>Total voters: {movie.vote_count}</p>
+                <p>Total voters: {movie.vote_count}</p>
                 {movie.adult ? <p>Age: 18+</p> : ""}
               </div>
             </div>
