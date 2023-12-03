@@ -7,7 +7,7 @@ export default function PopularFetch() {
   const [displayedMovies, setDisplayedMovies] = useState([]);
   const [popularData, setPopularData] = useState(null);
   const [movieMore, setMovieMore] = useState(false);
-  const apiKey = process.env.MOVDB_API_KEY;
+  const apiKey = env.local.MOVDB_API_KEY;
   const itemsPerPage = 10;
 
   useEffect(() => {
@@ -66,17 +66,13 @@ export default function PopularFetch() {
                   {movie.original_title}
                 </h2>
 
-                <p className="text-lg">
-                  {movie.overview}
-                </p>
+                <p className="text-lg">{movie.overview}</p>
 
                 <p className="mt-5 text-green-600 text-lg">
                   Rating: {movie.vote_average}
                 </p>
 
-                <p className="text-lg">
-                  Release date: {movie.release_date}
-                </p>
+                <p className="text-lg">Release date: {movie.release_date}</p>
 
                 <p>Total voters: {movie.vote_count}</p>
                 {movie.adult ? <p>Age: 18+</p> : ""}
