@@ -4,7 +4,7 @@ import LoadingPage from "../components/LoadingAnimation";
 
 export default function TopFetch() {
   const [allMovies, setAllMovies] = useState();
-  const apiKey = "";
+  const apiKey = process.env.API_URL;
 
   useEffect(() => {
     const fetchData = async () => {
@@ -33,14 +33,6 @@ export default function TopFetch() {
               className="flex shadow-[rgba(0,_0,_0,_0.24)_0px_3px_8px] p-5"
               id="popular-mov-comp"
             >
-              {/* next obj: include max_width media query in tailwind and not in global.css, to simplify code */}
-
-              {/* <Image 
-              src={`https://image.tmdb.org/t/p/original/${movie.poster_path}`}
-              width={600}
-              heigh={600}
-              alt={movie.original_title}
-              /> */}
               <img
                 src={`https://image.tmdb.org/t/p/original/${movie.poster_path}`}
                 id="popular-img"

@@ -7,10 +7,8 @@ export default function PopularFetch() {
   const [displayedMovies, setDisplayedMovies] = useState([]); // Stores movies that are currently displayed
   const [popularData, setPopularData] = useState(null);
   const [movieMore, setMovieMore] = useState(false);
-  const apiKey = "";
+  const apiKey = process.env.API_URL;
   const itemsPerPage = 10;
-  // const [movieId, setMovieId] = useState();
-  // const [movieByID, setMovieByID] = useState([]);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -37,24 +35,6 @@ export default function PopularFetch() {
     });
   }, []);
 
-  // useEffect(() => {
-  //   const fetchData = async () => {
-  //     const response = await fetch(
-  //       `https://api.themoviedb.org/3/movie/${movieId}?api_key=${apiKey}`
-  //     );
-
-  //     if (!response.ok) {
-  //       throw new Error(`HTTP error! status: ${response.status}`);
-  //     }
-  //     const result = await response.json();
-  //     setMovieByID(result.results); // result.results
-  //   };
-
-  //   fetchData().catch((e) => {
-  //     console.error("Error occurred on fetch", e);
-  //   });
-  // }, []);
-
   const handleLoadMore = () => {
     const nextItems = allMovies.slice(
       displayedMovies.length,
@@ -80,14 +60,6 @@ export default function PopularFetch() {
               className="flex shadow-[rgba(0,_0,_0,_0.24)_0px_3px_8px] p-5"
               id="popular-mov-comp"
             >
-              {/* next obj: include max_width media query in tailwind and not in global.css, to simplify code */}
-
-              {/* <Image 
-              src={`https://image.tmdb.org/t/p/original/${movie.poster_path}`}
-              width={600}
-              heigh={600}
-              alt={movie.original_title}
-              /> */}
               <img
                 src={`https://image.tmdb.org/t/p/original/${movie.poster_path}`}
                 id="popular-img"
@@ -112,28 +84,6 @@ export default function PopularFetch() {
 
                 <p key={movie.id}>Total voters: {movie.vote_count}</p>
                 {movie.adult ? <p>Age: 18+</p> : ""}
-
-                {/* <button onClick={setMovieTrue} key={movie.id}>
-                  More details
-                </button> */}
-
-                {/* {movieMore ? (
-                  <>
-                    {movieByID.map((movie) => (
-                      <>
-                        <div key={movie.id}>
-                          <h1>{movie.results.original_title}</h1>
-                        </div>
-                      </>
-                    ))}
-                    <p>Some text here</p>
-                    <p>Some text here</p>
-                    <p>Some text here</p>
-                    <p>Some text here</p>
-                  </>
-                ) : (
-                  ""
-                )} */}
               </div>
             </div>
           ))}
@@ -155,24 +105,3 @@ export default function PopularFetch() {
     </div>
   );
 }
-
-// async function getPopular() {
-//     const res = await fetch(`https://api.themoviedb.org/3/movie/popular?api_key=${apiKey}`)
-
-//     res.json()
-// }
-
-// export default async function PopularFetch() {
-//     const popularMovies = await getPopular();
-
-//     return (
-//     <div>
-//       <h1>Movies</h1>
-//       {popularMovies.results.map(movie => (
-//         <div key={movie.id}>
-//           <h2>{movie.title }</h2>
-//         </div>
-//       ))}
-//     </div>
-//   )
-// }
