@@ -16,7 +16,6 @@ export default function TopFetch() {
       }
       const result = await response.json();
       setAllMovies(result.results);
-      setIsLoaded(true);
     };
 
     fetchData().catch((e) => {
@@ -30,6 +29,7 @@ export default function TopFetch() {
         <>
           {allMovies.map((movie) => (
             <div
+              key={movie.id} // key prop added here
               className="flex shadow-[rgba(0,_0,_0,_0.24)_0px_3px_8px] p-5"
               id="popular-mov-comp"
             >
@@ -39,23 +39,19 @@ export default function TopFetch() {
               />
 
               <div className="flex-col ml-5">
-                <h2 key={movie.id} className="font-bold text-3xl mb-1">
+                <h2 className="font-bold text-3xl mb-1">
                   {movie.original_title}
                 </h2>
 
-                <p key={movie.id} className="text-lg">
-                  {movie.overview}
-                </p>
+                <p className="text-lg">{movie.overview}</p>
 
-                <p key={movie.id} className="mt-5 text-green-600 text-lg">
+                <p className="mt-5 text-green-600 text-lg">
                   Rating: {movie.vote_average}
                 </p>
 
-                <p key={movie.id} className="text-lg">
-                  Release date: {movie.release_date}
-                </p>
+                <p className="text-lg">Release date: {movie.release_date}</p>
 
-                <p key={movie.id}>Total voters: {movie.vote_count}</p>
+                <p>Total voters: {movie.vote_count}</p>
                 {movie.adult ? <p>Age: 18+</p> : ""}
               </div>
             </div>
