@@ -7,7 +7,7 @@ export default function PopularFetch() {
   const [displayedMovies, setDisplayedMovies] = useState([]);
   const [popularData, setPopularData] = useState(null);
   const [movieMore, setMovieMore] = useState(false);
-  const apiKey = process.env.NEXT_PUBLIC_MOVDB_API_KEY;
+  const apiKey = process.env.NEXT_PUBLIC_VERCEL_ENV_MOVDB_API_KEY;
   const itemsPerPage = 10;
 
   useEffect(() => {
